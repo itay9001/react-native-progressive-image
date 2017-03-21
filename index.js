@@ -26,6 +26,18 @@ export default class ProgressiveImage extends Component {
     this.props.onLoadImage()
   }
 
+  getThumbnail() {
+    if (this.props.thumbnailSource) {
+      <Animated.Image
+        resizeMode="cover"
+        style={[styles.image, { opacity: this.state.thumbnailOpacity }, this.props.style]}
+        source={this.props.thumbnailSource}
+        onLoad={() => this.onLoadThumbnail()}
+        blurRadius={this.props.thumbnailBlurRadius}
+      />
+    }
+  }
+
   render() {
     return (
       <View style={this.props.style}>
@@ -34,13 +46,9 @@ export default class ProgressiveImage extends Component {
           style={[styles.image, this.props.style]}
           source={this.props.placeHolderSource}
         />
-        <Animated.Image
-          resizeMode="cover"
-          style={[styles.image, { opacity: this.state.thumbnailOpacity }, this.props.style]}
-          source={this.props.thumbnailSource}
-          onLoad={() => this.onLoadThumbnail()}
-          blurRadius={this.props.thumbnailBlurRadius}
-        />
+        
+        {this.getThumbnail()}
+
         <Animated.Image
           resizeMode="cover"
           style={[styles.image, { opacity: this.state.imageOpacity }, this.props.style]}
@@ -52,15 +60,15 @@ export default class ProgressiveImage extends Component {
   }
 }
 
- const styles = StyleSheet.create({
-   image: {
-     position: 'absolute',
-     top: 0,
-     bottom: 0,
-     left: 0,
-     right: 0,
-   },
- })
+const styles = StyleSheet.create({
+  image: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+})
 
 ProgressiveImage.propTypes = {
   placeHolderColor: PropTypes.string,
