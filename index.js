@@ -69,7 +69,6 @@ ProgressiveImage.propTypes = {
   imageFadeDuration: PropTypes.number.isRequired,
   onLoadThumbnail: PropTypes.func.isRequired,
   onLoadImage: PropTypes.func.isRequired,
-  thumbnailSource: PropTypes.object.isRequired,
   thumbnailFadeDuration: PropTypes.number.isRequired,
   thumbnailBlurRadius: PropTypes.number,
 }
